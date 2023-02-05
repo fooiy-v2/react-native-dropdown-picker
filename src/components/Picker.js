@@ -163,7 +163,8 @@ function Picker({
     testID,
     closeOnBackPressed = false,
     extendableBadgeContainer = false,
-    onSelectItem = (item) => {}
+    onSelectItem = (item) => {},
+    description = '',
 }) {
     const [necessaryItems, setNecessaryItems] = useState([]);
     const [searchText, setSearchText] = useState('');
