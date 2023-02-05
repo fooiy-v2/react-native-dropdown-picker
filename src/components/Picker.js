@@ -58,6 +58,7 @@ function Picker({
     disabled = false,
     disabledStyle = {},
     placeholderStyle = {},
+    descriptionStyle = {},
     containerStyle = {},
     style = {},
     textStyle = {},
@@ -763,6 +764,14 @@ function Picker({
     }, [isNull, placeholderStyle]);
 
     /**
+     * The style of the description.
+     * @returns {object}
+     */
+    const _descriptionStyle = useMemo(() => ([
+        ...[! isNull && descriptionStyle].flat(),
+    ]), [isNull, descriptionStyle]);
+
+    /**
      * The style of the label.
      * @returns {object}
      */
@@ -903,12 +912,17 @@ function Picker({
      */
     const SimpleBodyComponent = useMemo(() => (
         <>
-            {SelectedItemIconComponent}
-            <Text style={_labelStyle} {...labelProps}>
-                {_selectedItemLabel}
-            </Text>
+            <View>
+                <Text style={_descriptionStyle}>
+                    {description}
+                </Text>
+                {SelectedItemIconComponent}
+                <Text style={_labelStyle} {...labelProps}>
+                    {_selectedItemLabel}
+                </Text>
+            </View>
         </>
-    ), [SelectedItemIconComponent, _labelStyle, labelProps, _selectedItemLabel]);
+    ), [_descriptionStyle, description, SelectedItemIconComponent, _labelStyle, labelProps, _selectedItemLabel]);
 
     /**
      * onPress badge.
